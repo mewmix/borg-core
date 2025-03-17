@@ -1,0 +1,38 @@
+name: ape-borg-core
+contracts_folder: src
+dependencies:
+  - name: SafeContracts
+    github: safe-global/safe-contracts
+    version: v1.4.1
+  - name: ForgeStd
+    github: foundry-rs/forge-std
+    version: v1.8.2
+  - name: DsTest
+    github: dapphub/ds-test
+    ref: master
+  - name: Solady
+    github: Vectorized/solady
+    ref: main
+  - name: OpenZeppelin
+    github: OpenZeppelin/openzeppelin-contracts
+    version: 4.9.3
+  - name: MetaVesT
+    github: MetaLex-Tech/MetaVesT
+    ref: main
+compiler:
+  include_dependencies: true  # Tells Ape to compile deps in ape compile
+  exclude: []                 # (Optional) Patterns to exclude from compilation
+  output_extra: []            # (Optional) e.g. ["ABI"]
+  solc:
+    version: 0.8.20
+    optimize: true
+    optimizer_runs: 200
+    via_ir: true
+
+solidity:
+  import_remapping:
+    - "safe-contracts/=SafeContracts/contracts/"
+    - "openzeppelin/=OpenZeppelin/"
+    - "metavest/=MetaVesT/src/"
+    - "forge-std/=ForgeStd/src/"
+    - "solady/=Solady/src/"
