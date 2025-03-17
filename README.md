@@ -74,3 +74,21 @@ To set up the project locally, follow these steps:
     forge build --optimize --optimizer-runs 200 --use solc:0.8.20 --via-ir
     ```
 
+4. **Testing with APE**
+ - Setup Ape
+    ```base
+    pip install eth-ape
+   ```
+ - Install plugins 
+   ```base
+    ape plugins install solidity 
+   ```
+ - Install deps(ape)
+
+   ```base
+    ape pm install --force  
+   ```
+ - Compile 
+   ```
+   ape compile --force
+   ```
