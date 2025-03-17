@@ -4,25 +4,32 @@ dependencies:
   - name: SafeContracts
     github: safe-global/safe-contracts
     version: v1.4.1
+    contracts_folder: contracts
+    config_override:
+      compile:
+        exclude:
+          - "contracts/test/**"
+          - "tests_deprecated/**"
+
+    
   - name: ForgeStd
     github: foundry-rs/forge-std
     version: v1.8.2
-  - name: DsTest
-    github: dapphub/ds-test
-    ref: master
-  - name: Solady
-    github: Vectorized/solady
-    ref: main
+    contracts_folder: src  # Forge-std uses src/
+    
   - name: OpenZeppelin
     github: OpenZeppelin/openzeppelin-contracts
     version: 4.9.3
+    contracts_folder: contracts  # Contracts are in root contracts folder
+    
   - name: MetaVesT
     github: MetaLex-Tech/MetaVesT
     ref: main
+    contracts_folder: src
+    
 compiler:
-  include_dependencies: true  # Tells Ape to compile deps in ape compile
-  exclude: []                 # (Optional) Patterns to exclude from compilation
-  output_extra: []            # (Optional) e.g. ["ABI"]
+  use_cache: false
+  include_dependencies: true
   solc:
     version: 0.8.20
     optimize: true
@@ -31,8 +38,16 @@ compiler:
 
 solidity:
   import_remapping:
-    - "safe-contracts/=SafeContracts/contracts/"
-    - "openzeppelin/=OpenZeppelin/"
-    - "metavest/=MetaVesT/src/"
-    - "forge-std/=ForgeStd/src/"
-    - "solady/=Solady/src/"
+    - "safe-contracts=./lib/safe-tools/lib/safe-contracts/contracts"
+    - "@openzeppelin=./lib/openzeppelin-contracts/contracts"
+    - "forge-std=./lib/forge-std/src"
+    - "metavest=./lib/MetaVesT/src"
+    - "solady=./lib/safe-tools/lib/solady/src"
+    - "ds-test=./lib/forge-std/lib/ds-test/src"
+    - "@gnosis.pm/mock-contract=./lib/safe-tools/lib/mock-contract/contracts"
+
+
+networks:
+  base:
+    mainnet-fork:
+      provider: "http://localhost:8545"
