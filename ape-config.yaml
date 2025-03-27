@@ -1,53 +1,11 @@
 name: ape-borg-core
-contracts_folder: src
-dependencies:
-  - name: SafeContracts
-    github: safe-global/safe-contracts
-    version: v1.4.1
-    contracts_folder: contracts
-    config_override:
-      compile:
-        exclude:
-          - "contracts/test/**"
-          - "tests_deprecated/**"
-
-    
-  - name: ForgeStd
-    github: foundry-rs/forge-std
-    version: v1.8.2
-    contracts_folder: src  # Forge-std uses src/
-    
-  - name: OpenZeppelin
-    github: OpenZeppelin/openzeppelin-contracts
-    version: 4.9.3
-    contracts_folder: contracts  # Contracts are in root contracts folder
-    
-  - name: MetaVesT
-    github: MetaLex-Tech/MetaVesT
-    ref: main
-    contracts_folder: src
-    
+contracts_folder: out  # Use Foundry's output directory
+dependencies: []  # No compilation dependencies needed
 compiler:
   use_cache: false
-  include_dependencies: true
   solc:
-    version: 0.8.20
-    optimize: true
-    optimizer_runs: 200
-    via_ir: true
-
-solidity:
-  import_remapping:
-    - "safe-contracts=./lib/safe-tools/lib/safe-contracts/contracts"
-    - "@openzeppelin=./lib/openzeppelin-contracts/contracts"
-    - "forge-std=./lib/forge-std/src"
-    - "metavest=./lib/MetaVesT/src"
-    - "solady=./lib/safe-tools/lib/solady/src"
-    - "ds-test=./lib/forge-std/lib/ds-test/src"
-    - "@gnosis.pm/mock-contract=./lib/safe-tools/lib/mock-contract/contracts"
-
-
+    version: 0.8.20  # For consistency, though not used
 networks:
   base:
-    mainnet-fork:
       provider: "http://localhost:8545"
+      chain_id: 8453  # Explicitly set to match Base mainnet's chain ID
