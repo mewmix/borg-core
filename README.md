@@ -92,3 +92,8 @@ To set up the project locally, follow these steps:
    ```
    ape compile --force
    ```
+
+   - Start local fork
+   ```
+   anvil --fork-url https://base.meowrpc.com --host 0.0.0.0 --port 8545
+   ```

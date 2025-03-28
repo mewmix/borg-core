@@ -1,11 +1,23 @@
 name: ape-borg-core
-contracts_folder: out  # Use Foundry's output directory
-dependencies: []  # No compilation dependencies needed
+contracts_folder: out
+dependencies: []
 compiler:
   use_cache: false
   solc:
-    version: 0.8.20  # For consistency, though not used
+    version: 0.8.20
+
 networks:
   base:
-      provider: "http://localhost:8545"
-      chain_id: 8453  # Explicitly set to match Base mainnet's chain ID
+    local:
+      uri: http://127.0.0.1:8545
+      chain_id: 8453
+      explorer:
+        etherscan:
+          api_key: "UYX48KBVIAYMM38RZJI6PAIZ8U16MZCGNK"
+          uri: "https://api.basescan.org/api"
+
+foundry:
+  fork:
+    base:
+      local:
+        block_number: 
